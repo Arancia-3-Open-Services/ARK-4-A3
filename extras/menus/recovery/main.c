@@ -277,9 +277,9 @@ int main(SceSize args, void *argp) {
     if (fd >= 0) { sceIoRead(fd, &exh_buf, 1); sceIoClose(fd); }
     int size = sizeof(options) / sizeof(options[0]);
     if (exh_buf == '0') {
-        options[7] = "exh Manager Not enabled!"; // Before the exh manager, everyone had THIS!
+        options[6] = "exh is disabled."; // Before the exh manager, everyone had THIS!
     } else if (exh_buf == '1') {
-        options[7] = "exh Manager";
+        options[6] = "exh Manager";
     };
     
     int dir = 0;
