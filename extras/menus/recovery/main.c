@@ -277,8 +277,10 @@ int main(SceSize args, void *argp) {
     if (fd >= 0) { sceIoRead(fd, &exh_buf, 1); sceIoClose(fd); }
     int size = sizeof(options) / sizeof(options[0]);
     if (exh_buf == '0') {
-        size = 6;
-    }
+        options[7] = "exh Manager Not enabled!"; // Before the exh manager, everyone had THIS!
+    } else if (exh_buf == '1') {
+        options[7] = "exh Manager";
+    };
     
     int dir = 0;
 
@@ -371,12 +373,9 @@ int main(SceSize args, void *argp) {
         sceDisplayWaitVblankStart();
         pspDebugScreenClear();
         pspDebugScreenSetTextColor(0xFFFFFFFF);
-        pspDebugScreenSetXY(5, 5);
-        pspDebugScreenPrintf("    ///////////////////////");
-        pspDebugScreenSetXY(5, 6);
-        pspDebugScreenPrintf("  //// exh Manager //////");
-        pspDebugScreenSetXY(5, 7);
-        pspDebugScreenPrintf("///////////////////////");
+        pspDebugScreenPrintf("EXH Manager");
+        pspDebugScreenSetXY(0, 1);
+        pspDebugScreenPrintf("You can press Triangle to exit.");
       
         // --- SELECTABLES ---
 
