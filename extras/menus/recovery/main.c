@@ -7,6 +7,7 @@ void exh_submenu(void);
 #include <systemctrl.h>
 #include <systemctrl_se.h>
 #include <ark.h>
+#include <string.h>
 #include <main.h>
 #define SCREEN_WIDTH 58
 #define SCREEN_HEIGHT 33 
@@ -274,7 +275,7 @@ int main(SceSize args, void *argp) {
     char exh_buf = 0;
     SceUID fd = sceIoOpen("ms0:/PSP/SAVEDATA/ARK_30000/exh.txt", PSP_O_RDONLY, 0777);
     if (fd < 0) fd = sceIoOpen("ef0:/PSP/SAVEDATA/ARK_30000/exh.txt", PSP_O_RDONLY, 0777);
-    if (fd >= 0) { sceIoRead(fd, &exh_buf, 1); sceIoClose(fd); }
+    if (fd >= 0) { sceIoRead(fd, &exh_buf, 1); sceIoClose(fd); };
     int size = sizeof(options) / sizeof(options[0]);
     if (exh_buf == '0') {
         options[7] = "exh is disabled."; // Before the exh manager, everyone had THIS!
@@ -299,21 +300,21 @@ int main(SceSize args, void *argp) {
         	if(dir>size) dir = 0;
 
             draw(options, size, dir);
-        }
+        };
         if (pad.Buttons & PSP_CTRL_UP) {
             sceKernelDelayThread(200000);
         	dir--;
         	if(dir<0) dir = size;
             
             draw(options, size, dir);
-        }
+        };
         if ((pad.Buttons & (PSP_CTRL_CROSS | PSP_CTRL_CIRCLE))) {
             sceKernelDelayThread(200000);
             int ret = selected_choice(dir);
             if(ret==0) break;
             
             draw(options, size, dir);
-        }
+        };
         if (pad.Buttons & PSP_CTRL_LEFT){
             if (dir == 1 && IS_PSP(ark_config)){
                 sceKernelDelayThread(200000);
@@ -322,8 +323,8 @@ int main(SceSize args, void *argp) {
             
                 options[1] = usb_options[se_config.usbdevice];
                 draw(options, size, dir);
-            }
-        }
+            };
+        };
         if (pad.Buttons & PSP_CTRL_RIGHT){
             if (dir == 1 && IS_PSP(ark_config)){
                 sceKernelDelayThread(200000);
@@ -332,21 +333,21 @@ int main(SceSize args, void *argp) {
 
                 options[1] = usb_options[se_config.usbdevice];
                 draw(options, size, dir);
-            }
-        }
-    }
+            };
+        };
+    };
 
     sceKernelExitGame();
     return 0;
-}
+};
  void activate_exh(void) {
     char def = '1';
     SceUID fd = sceIoOpen("ms0:/PSP/SAVEDATA/ARK_30000/exh.txt", PSP_O_WRONLY | PSP_O_CREAT | PSP_O_TRUNC, 0777);
     if (fd >= 0) {
         sceIoWrite(fd, &def, 1);
         sceIoClose(fd);
-    }
- }
+    };
+ };
 
   // Dunk the exh in the bin! Got it!
 
@@ -356,16 +357,16 @@ int main(SceSize args, void *argp) {
     if (fd >= 0) {
         sceIoWrite(fd, &def, 1);
         sceIoClose(fd);
-    }
- }
+    };
+ };
  void activatecel(void) {
     char def = '1';
     SceUID fd = sceIoOpen("ms0:/PSP/SAVEDATA/ARK_30000/celblock.txt", PSP_O_WRONLY | PSP_O_CREAT | PSP_O_TRUNC, 0777);
     if (fd >= 0) {
         sceIoWrite(fd, &def, 1);
         sceIoClose(fd);
-    }
- }
+    };
+ };
 
  void exh_submenu(void) {
     int running = 1;
@@ -399,14 +400,19 @@ int main(SceSize args, void *argp) {
         pspDebugScreenPrintf("%s Reset exh", (index == 1) ? ">" : " " );
         pspDebugScreenSetXY(10, 12);
         pspDebugScreenPrintf("%s Activate CELBLOCK Utility", (index == 2) ? ">" : " " );
-
         redraw = 0;
-
       };
-        // --- Don't think about this... ---
+       // PLEASE DON'T GET HERE, i need to make a partition!
+       int res = sceIoAssign("flash4:", "flashfat4", "flashfat", 1, NULL, 0);
+       if (res >= 0) {
+            SceUID fd = sceIoOpen("flash4:/init.A3", PSP_O_WRONLY | PSP_O_CREAT | PSP_O_TRUNC, 0777);
+            if (fd >= 0) {
+                const char *initdata = "exhready";
+                sceIoWrite(fd, initdata, strlen(initdata));
+                sceIoClose(fd);
+            };
+       };
         sceCtrlReadBufferPositive(&pad, 1);
-        // --- For reading the pad output. ---
-
         // --- controls. ---
         if (pad.Buttons & PSP_CTRL_UP) {
             index--;
@@ -422,6 +428,7 @@ int main(SceSize args, void *argp) {
             }
             redraw = 1;
         };
+
          // --- Managing button selection ---
 
          if (pad.Buttons & PSP_CTRL_CROSS) {
@@ -434,6 +441,7 @@ int main(SceSize args, void *argp) {
             };
          };
         if (pad.Buttons & PSP_CTRL_TRIANGLE) { 
+            sceIoUnassign("flash4:");
             running = 0; 
         };
     sceKernelDelayThread(30000);
