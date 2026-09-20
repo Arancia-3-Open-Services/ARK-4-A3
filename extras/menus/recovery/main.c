@@ -189,17 +189,17 @@ static int selected_choice(u32 choice) {
         }
     }
 
-}
+};
 
-static void draw(char** options, int size, int dir){
+static void draw(char** options, int size, int dir) {
+    char exh_buf = 0;
     pspDebugScreenSetXY(0, 1);
     pspDebugScreenSetTextColor(0xFFD800);
     printf("********************************************************************");
-
     pspDebugScreenSetXY(0, 2);
-    printf("* ARK-4 A3 Recovery Menu *                                            *");
+    printf("* ARK-4 A3 Recovery Menu *                                         *");
     pspDebugScreenSetXY(0, 3);
-    printf("**************************                                            *");
+    printf("********************************************************************");
     pspDebugScreenSetXY(0, 4);
     printf("*                                                                  *");
 
@@ -230,7 +230,7 @@ static void draw(char** options, int size, int dir){
     // BOTTOM BORDER
     pspDebugScreenSetXY(0, 33);
     printf("********************************************************************");
-}
+};
 
 int main(SceSize args, void *argp) {
 
@@ -279,7 +279,7 @@ int main(SceSize args, void *argp) {
     if (exh_buf == '0') {
         options[7] = "exh is disabled."; // Before the exh manager, everyone had THIS!
     } else if (exh_buf == '1') {
-        options[7] = "exh Manager";
+        options[7] = "exh is enabled.";
     };
     
     int dir = 0;
@@ -358,6 +358,14 @@ int main(SceSize args, void *argp) {
         sceIoClose(fd);
     }
  }
+ void activatecel(void) {
+    char def = '1';
+    SceUID fd = sceIoOpen("ms0:/PSP/SAVEDATA/ARK_30000/celblock.txt", PSP_O_WRONLY | PSP_O_CREAT | PSP_O_TRUNC, 0777);
+    if (fd >= 0) {
+        sceIoWrite(fd, &def, 1);
+        sceIoClose(fd);
+    }
+ }
 
  void exh_submenu(void) {
     int running = 1;
@@ -374,25 +382,27 @@ int main(SceSize args, void *argp) {
         pspDebugScreenClear();
         pspDebugScreenSetTextColor(0xFFFFFFFF);
         pspDebugScreenPrintf("********************************************************************");
-        pspDebugScreensetXY(0, 1);
+        pspDebugScreenSetXY(0, 1);
         pspDebugScreenPrintf("* EXH Manager *                                                    *");
         pspDebugScreenSetXY(0, 2);
         pspDebugScreenPrintf("***************                                                    *");
-        pspDebugScreenSetXY(0, 3)
+        pspDebugScreenSetXY(0, 3);
         pspDebugScreenPrintf("You can press Triangle to exit.                                    *");
-        pspDebugScreenSetXY(0, 4)
+        pspDebugScreenSetXY(0, 4);
         pspDebugScreenPrintf("********************************************************************");
       
         // --- SELECTABLES ---
 
-        pspDebugScreenSetXY(0, 8);
+        pspDebugScreenSetXY(10, 8);
         pspDebugScreenPrintf("%s Activate exh", (index == 0) ? ">" : " " );
-        pspDebugScreenSetXY(0, 9);
+        pspDebugScreenSetXY(10, 10);
         pspDebugScreenPrintf("%s Reset exh", (index == 1) ? ">" : " " );
+        pspDebugScreenSetXY(10, 12);
+        pspDebugScreenPrintf("%s Activate CELBLOCK Utility", (index == 2) ? ">" : " " );
 
         redraw = 0;
 
-      }
+      };
         // --- Don't think about this... ---
         sceCtrlReadBufferPositive(&pad, 1);
         // --- For reading the pad output. ---
@@ -401,11 +411,11 @@ int main(SceSize args, void *argp) {
         if (pad.Buttons & PSP_CTRL_UP) {
             index = 0;
             redraw = 1;
-        }
+        };
         if (pad.Buttons & PSP_CTRL_DOWN) {
             index = 1;
             redraw = 1;
-        }
+        };
          // --- Managing button selection ---
 
          if (pad.Buttons & PSP_CTRL_CROSS) {
@@ -413,14 +423,17 @@ int main(SceSize args, void *argp) {
                 activate_exh();
             } else if (index == 1) {
                 reset_exh();
+            }; else if (index == 2) {
+                activatecel();
             }
-         }
+         };
         if (pad.Buttons & PSP_CTRL_TRIANGLE) { 
             running = 0; 
-        }
+        };
     sceKernelDelayThread(30000);
-    }
- }
+    };
+ };
+// Separator.
 int module_start(int argc, void* argv){
 
     psp_model = kuKernelGetModel();

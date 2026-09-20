@@ -185,4 +185,7 @@ This is a little atrocious, because you will lose your configurations.
 
 - This may look like some version of Dark Alex's OE (Maybe M33) or some official release from the ark 4 team, but just know this is a fanmade, unofficial, maintained and forked version of ark 4.
 Just know that official development from the ark 4 team has shifted to ark 5 entirely, but know that this is not official. This version is made to keep ark 4 alive.
+
+- The Screenshots were made with PRXShot.
+
 </p>
