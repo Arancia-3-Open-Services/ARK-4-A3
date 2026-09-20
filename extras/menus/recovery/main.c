@@ -387,7 +387,7 @@ int main(SceSize args, void *argp) {
         pspDebugScreenSetXY(0, 2);
         pspDebugScreenPrintf("***************                                                    *");
         pspDebugScreenSetXY(0, 3);
-        pspDebugScreenPrintf("You can press Triangle to exit.                                    *");
+        pspDebugScreenPrintf("* You can press Triangle to exit.                                  *");
         pspDebugScreenSetXY(0, 4);
         pspDebugScreenPrintf("********************************************************************");
       
@@ -409,11 +409,17 @@ int main(SceSize args, void *argp) {
 
         // --- controls. ---
         if (pad.Buttons & PSP_CTRL_UP) {
-            index = 0;
+            index--;
+            if (index < 0) {
+                index = 0;
+            }
             redraw = 1;
         };
         if (pad.Buttons & PSP_CTRL_DOWN) {
-            index = 1;
+            index++;
+            if (index > 2) {
+                index = 2;
+            }
             redraw = 1;
         };
          // --- Managing button selection ---
@@ -423,9 +429,9 @@ int main(SceSize args, void *argp) {
                 activate_exh();
             } else if (index == 1) {
                 reset_exh();
-            }; else if (index == 2) {
+            } else if (index == 2) {
                 activatecel();
-            }
+            };
          };
         if (pad.Buttons & PSP_CTRL_TRIANGLE) { 
             running = 0; 
