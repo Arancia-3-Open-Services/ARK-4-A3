@@ -51,15 +51,15 @@ SceUID get_thread_id(const char *name)
 
     	if(ret < 0) {
     		continue;
-    	}
+    	};
 
     	if(0 == strcmp(info.name, name)) {
     		return ids[i];
-    	}
-    }
+    	};
+    };
 
     return -2;
-}
+};
 
 void suspend_thread(const char *thread_name)
 {
@@ -68,7 +68,7 @@ void suspend_thread(const char *thread_name)
     ret = get_thread_id(thread_name);
 
     sceKernelSuspendThread(ret);
-}
+};
 
 void suspend_vsh_thread(void)
 {
@@ -77,7 +77,7 @@ void suspend_vsh_thread(void)
     suspend_thread("movie_player");
     suspend_thread("audio_buffer");
     suspend_thread("music_player");
-}
+};
 
 static char* findRecoveryApp(){
     const char *p = "ms0:/PSP/GAME/RECOVERY/EBOOT.PBP";
@@ -103,7 +103,7 @@ static int launchRecoveryApp(char* p){
 
     // SHOULD NOT REALLY GET HERE
     return 0;
-}
+};
 
 static void checkArkPath(){
     int fd;
@@ -113,21 +113,21 @@ static void checkArkPath(){
         strcpy(ark_config->arkpath, "ef0:/PSP/SAVEDATA/ARK_30000/");
         sceIoDclose(fd);
         return;
-    }
+    };
 
     fd = sceIoDopen("ms0:/PSP/SAVEDATA/ARK_30000");
     if (fd >= 0){
         strcpy(ark_config->arkpath, "ms0:/PSP/SAVEDATA/ARK_30000/");
         sceIoDclose(fd);
         return;
-    }
+    };
 
     fd = sceIoDopen("ms0:/SEPLUGINS");
     if (fd >= 0) {
         strcpy(ark_config->arkpath, "ms0:/SEPLUGINS/");
         sceIoDclose(fd);
         return;
-    }
+    };
     strcpy(ark_config->arkpath, "flash1:/");
 
 }
@@ -152,7 +152,7 @@ static int selected_choice(u32 choice) {
         else{
             printf("Enabling the USB...");
             USB_enable();
-        }
+        };
         sceKernelDelayThread(1000000);
         return 1;
     case 2:
@@ -200,7 +200,7 @@ static void draw(char** options, int size, int dir) {
     pspDebugScreenSetXY(0, 2);
     printf("* ARK-4 A3 Recovery Menu *                                         *");
     pspDebugScreenSetXY(0, 3);
-    printf("********************************************************************");
+    printf("**************************                                         *");
     pspDebugScreenSetXY(0, 4);
     printf("*                                                                  *");
 
@@ -403,22 +403,28 @@ int main(SceSize args, void *argp) {
         redraw = 0;
       };
        // PLEASE DON'T GET HERE, i need to make a partition!
-       int res = sceIoAssign("flash4:", "flashfat4", "flashfat", 1, NULL, 0);
+       sceIoUnassign("flash4:");
+       int res = sceIoAssign("flash4:", "flashfat4", "flashfat:", 1, NULL, 0);
        if (res >= 0) {
-            SceUID fd = sceIoOpen("flash4:/init.A3", PSP_O_WRONLY | PSP_O_CREAT | PSP_O_TRUNC, 0777);
+            SceUID fd = sceIoOpen("flash4:/exh.A3", PSP_O_WRONLY | PSP_O_CREAT | PSP_O_TRUNC, 0777);
             if (fd >= 0) {
                 const char *initdata = "exhready";
                 sceIoWrite(fd, initdata, strlen(initdata));
                 sceIoClose(fd);
             };
+            fd = sceIoOpen("flash4:/conime.A3", PSP_O_WRONLY | PSP_O_CREAT | PSP_O_TRUNC, 0777);
+            if (fd >= 0) {
+                sceIoClose(fd);
+            };
        };
+        
         sceCtrlReadBufferPositive(&pad, 1);
         // --- controls. ---
         if (pad.Buttons & PSP_CTRL_UP) {
             index--;
             if (index < 0) {
                 index = 0;
-            }
+            };
             redraw = 1;
         };
         if (pad.Buttons & PSP_CTRL_DOWN) {
@@ -448,7 +454,7 @@ int main(SceSize args, void *argp) {
     };
  };
 // Separator.
-int module_start(int argc, void* argv){
+int module_start(int argc, void* argv) {
 
     psp_model = kuKernelGetModel();
     sctrlArkGetConfig(ark_config);
@@ -459,4 +465,3 @@ int module_start(int argc, void* argv){
     sceKernelStartThread(uid, 0, NULL);
     return 0;
 }
-
