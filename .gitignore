@@ -6,3 +6,4 @@
 *.rpm
 *.SFO
 dist
+.vscode/settings.json

@@ -44,9 +44,11 @@ as well as unique and exclusive new features not found anywhere else.
 
 - Recovery menu. Useful for those who love setting up their plugins and settings directly at bootup (if you have cIPL).
 
+- Includes an integrated EXH MANAGER, allowing to use A3 Files or configurating built-in exploits.
 
-![CFW Settings](.github/screenshots/cfw_settings.bmp "CFW Settings")
-![cIPL](https://github.com/PSP-Archive/ARK-4/wiki/.res/system_settings.bmp "System Info")
+
+![CFW Settings](.github/screenshots/pic_0001.bmp "CFW Settings")
+![cIPL](.github/screenshots/systemsettingsa3.png "System Info")
 
 #### Installation On PSP
 
