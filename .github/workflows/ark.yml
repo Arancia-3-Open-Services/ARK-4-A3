@@ -61,21 +61,6 @@ jobs:
         run: cd .. && curl -OJL "https://github.com/Lameguy64/mkpsxiso/releases/download/v2.03/mkpsxiso-2.03-Linux.deb" && sudo apt install ./mkpsxiso-2.03-Linux.deb
       - name: Making ARK-4 A3
         run: make
-      - name: upload ARK Release & DEBUG artifact 
-        id: create_release
-        uses: softprops/action-gh-release@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-        with:
-          tag_name: ${{ steps.get_version.outputs.VERSION }} 
-          name: ${{ github.sha }}
-          prerelease: true
-          files: |
-              ARK-4 A3-${{ steps.get_version.outputs.VERSION }}.zip
-              ARK-4 A3-${{ steps.get_version.outputs.VERSION }}.tar.gz
-              #ARK-4 A3-${{ steps.get_version.outputs.VERSION }}-DEBUG.zip
-              #ARK-4 A3-${{ steps.get_version.outputs.VERSION }}-DEBUG.tar.gz
-
       - name: Update Test Server
         # Please don't abuse this or I will have to revert back to the orginal way.
         run: curl -L 'http://ark-4.ddns.net/automagic?update_test=1'
