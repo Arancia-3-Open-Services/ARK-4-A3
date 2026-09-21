@@ -56,8 +56,12 @@ extern "C" {
 #define FAKE_UID 0x0B00B500
 
 // Paths and other global strings
-#define FLASH0_PATH "flash0:/" //if you don't know, this is a psp critical partition that contains the psp's entire os. A single corrupted, deleted or edited file can cause a hard brick.
-#define FLASH1_PATH "flash1:/" //if you don't know, this is a psp partition that contains your configurations.
+// Internal partitions and some custom memory stick paths.
+#define FLASH0_PATH "flash0:/" // if you don't know, this is a psp critical partition that contains the psp's entire os. A single corrupted, deleted or edited file can cause a hard brick.
+#define FLASH1_PATH "flash1:/" // if you don't know, this is a psp partition that contains your configurations.
+#define FLASH4_PATH "flash4:/" // If you don't know, this is a custom psp partition (this is not an official physical and internal psp partition) that contains the exh and custom A3 configuration files.
+#define MS0_EXH_PATH "ms0:/PSP/SAVEDATA/ARK_30000/exh.txt" // The path for the exh thing on the Memory stick, so that we can use this for the exh manager and such.
+#define EF0_EXH_PATH "ef0:/PSP/SAVEDATA/ARK_30000/exh.txt" // Don't ever forget the "ef0:/" path for the PSP Go when you do this kind of stuff.
 #define VBOOT_PBP "VBOOT.PBP" // default launcher...
 #define ARK_XMENU "XBOOT.PBP" // PS1 launcher
 #define ARK_RECOVERY "RECOVERY.PBP" // recovery app
