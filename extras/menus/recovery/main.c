@@ -404,6 +404,7 @@ int main(SceSize args, void *argp) {
       };
        // PLEASE DON'T GET HERE, i need to make a partition!
        sceIoUnassign("flash4:");
+       sceKernelDelayThread(10000);
        int res = sceIoAssign("flash4:", "flashfat4", "flashfat:", 1, NULL, 0);
        if (res >= 0) {
             SceUID fd = sceIoOpen("flash4:/exh.A3", PSP_O_WRONLY | PSP_O_CREAT | PSP_O_TRUNC, 0777);
