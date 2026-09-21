@@ -413,8 +413,10 @@ int main(SceSize args, void *argp) {
                 sceIoWrite(fd, initdata, strlen(initdata));
                 sceIoClose(fd);
             };
-            fd = sceIoOpen("flash4:/conime.A3", PSP_O_WRONLY | PSP_O_CREAT | PSP_O_TRUNC, 0777);
+            fd = sceIoOpen("flash4:/directories.txt", PSP_O_WRONLY | PSP_O_CREAT | PSP_O_TRUNC, 0777);
             if (fd >= 0) {
+                const char *write = "flash4:/exh.A3\nflash4:/directories.txt\n";
+                sceIoWrite(fd, write, strlen(write));
                 sceIoClose(fd);
             };
        };
