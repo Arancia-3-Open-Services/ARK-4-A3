@@ -61,12 +61,3 @@ jobs:
         run: cd .. && curl -OJL "https://github.com/Lameguy64/mkpsxiso/releases/download/v2.03/mkpsxiso-2.03-Linux.deb" && sudo apt install ./mkpsxiso-2.03-Linux.deb
       - name: Making ARK-4 A3
         run: make
-      - name: Update Test Server
-        # Please don't abuse this or I will have to revert back to the orginal way.
-        run: curl -L 'http://ark-4.ddns.net/automagic?update_test=1'
-
-      - name: Update Stable Server (because Acid is lazy for an ssk-keygen)
-        run: curl -L 'http://ark-4.ddns.net/automagic?update_rel=1'
-
-      - name: Update Stable Server (because Acid is lazy for an ssk-keygen)
-        run: curl -L 'http://ark-4 A3.ddns.net/automagic?update_rel=1'
