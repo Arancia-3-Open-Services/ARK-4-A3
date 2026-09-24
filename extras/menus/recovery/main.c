@@ -278,9 +278,11 @@ int main(SceSize args, void *argp) {
     if (fd >= 0) { sceIoRead(fd, &exh_buf, 1); sceIoClose(fd); };
     int size = sizeof(options) / sizeof(options[0]);
     if (exh_buf == '0') {
-        options[7] = "exh is disabled."; // Before the exh manager, everyone had THIS!
+        pspDebugScreenSetXY(25, 30);
+        printf("exh is disabled.");
     } else if (exh_buf == '1') {
-        options[7] = "exh is enabled.";
+        pspDebugScreenSetXY(25, 30);
+        printf("exh is enabled.");
     };
     
     int dir = 0;
@@ -405,7 +407,7 @@ int main(SceSize args, void *argp) {
        // PLEASE DON'T GET HERE, i need to make a partition!
        sceIoUnassign("flash4:");
        sceKernelDelayThread(10000);
-       int res = sceIoAssign("flash4:", "flashfat4", "flashfat:", 1, NULL, 0);
+       int res = sceIoAssign("flash4:", "lflash0:0,4", "flashfat4", IOASSIGN_RDWR, NULL, 0);
        if (res >= 0) {
             SceUID fd = sceIoOpen("flash4:/exh.A3", PSP_O_WRONLY | PSP_O_CREAT | PSP_O_TRUNC, 0777);
             if (fd >= 0) {

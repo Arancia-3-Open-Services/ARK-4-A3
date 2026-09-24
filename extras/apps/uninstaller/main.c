@@ -30,14 +30,14 @@ int main(int argc, char *args[]) {
         sceKernelDelayThread(8000000);
         sceKernelExitGame();
     }
-    printf("It is safest to just use ChronoSwitch to reinstall OFW without ARK-4 A3modules.\n\nPress X to continue\nPress O to quit...\n");
+    printf("It is safest to just use ChronoSwitch to reinstall OFW without ARK-4 A3 modules.\n\nPress X to continue\nPress O to quit...\n");
     while(1) {
         sceCtrlReadBufferPositive(&pad, 1);
         if(pad.Buttons & PSP_CTRL_CROSS)
         	break;
         else if(pad.Buttons & PSP_CTRL_CIRCLE)
         	sceKernelExitGame();
-    }
+    };
     pspDebugScreenClear();
 
     sceIoUnassign("flash0:");
