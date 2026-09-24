@@ -26,7 +26,7 @@ void loadstart_usermod(){
     if (uid>=0){
         int res = sceKernelStartModule(uid, 0, NULL, NULL, NULL);
         if (res<0){
-            PRTSTR1("ERROR starting user module: %p", res);
+            PRTSTR1("ERROR starting user module: %p\n", res);
             pspDebugScreenPrintf("A problem has occurred, and ARK-4 A3 has stopped to prevent further instability to your PSP.\n");
             sceKernelDelayThread(10000000);
         }
