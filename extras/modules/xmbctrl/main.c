@@ -100,9 +100,15 @@ GetItem GetItemes[] =
     { 20, 0, "UMD Region" },
     { 21, 0, "VSH Region" },
     { 22, 0, "QA Flags" },
+    { 23, 0, "exh" },
 };
 
 #define PLUGINS_CONTEXT 1
+
+char* ark_exh_set[] = {
+    "Disabled",
+    "Enabled"
+};
 
 char* ark_clock_settings[] = {
     "Auto",
@@ -187,6 +193,7 @@ struct {
     {NELEMS(ark_umdregion_options), ark_umdregion_options}, // UMD Region
     {NELEMS(ark_vshregion_options), ark_vshregion_options}, // VSH Region
     {2, ark_settings_boolean}, // QA Flags
+    {2, ark_exh_set}, // The exh thing.
 };
 
 #define N_ITEMS (sizeof(GetItemes) / sizeof(GetItem))
@@ -879,7 +886,7 @@ wchar_t *scePafGetTextPatched(void *a0, char *name)
         else if(sce_paf_private_strcmp(name, "msg_system_update") == 0 && se_config.custom_update)
         {
             char* translated = findTranslation("xmbmsg_system_update");
-            if (!translated) translated = "ARK-4 Updater";
+            if (!translated) translated = "ARK-4 A3 Updater";
             utf8_to_unicode((wchar_t *)user_buffer, translated);
         	return (wchar_t *)user_buffer;
         }
@@ -918,6 +925,7 @@ int vshGetRegistryValuePatched(u32 *option, char *name, void *arg2, int size, in
                 config.umdregion,
                 config.vshregion,  
                 config.qaflags,            
+                config.exh
             };
             
             int i;
@@ -978,6 +986,7 @@ int vshSetRegistryValuePatched(u32 *option, char *name, int size, int *value)
                 &config.umdregion,
                 &config.vshregion,
                 &config.qaflags,
+                &config.exh,
             };
             
             int i;

@@ -16,6 +16,7 @@ always, noled, off
 always, noumd, off
 always, noanalog, off
 always, qaflags, on
+always, exh, off
 
 # The following games don't like Inferno Cache
 # Luxor - The Wrath of Set (the other Luxor game works fine)

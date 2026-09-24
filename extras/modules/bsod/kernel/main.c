@@ -19,37 +19,24 @@ int (* DisplaySetFrameBuf)(void*, int, int, int) = NULL;
 void loadstart_usermod(){
 
     initScreen(DisplaySetFrameBuf);
-    PRTSTR("Starting BSOD.");
+    PRTSTR("Starting BSoD");
 
     int uid = sceKernelLoadModuleBuffer(size_bsod_user, bsod_user, 0, NULL);
 
     if (uid>=0){
         int res = sceKernelStartModule(uid, 0, NULL, NULL, NULL);
-        if (res<0){
-            PRTSTR1("ERROR starting user module: %p\n", res);
-            pspDebugScreenPrintf("A problem has occurred, and ARK-4 A3 has stopped to prevent further instability to your PSP.\n");
-            pspDebugScreenPrintf("If this is the first time you are seeing this screen, try to wait for some seconds\n");
-            pspDebugScreenPrintf("or just restart your PSP.\n");
-            pspDebugScreenPrintf("If this problem continues, you should immediately contact customer service\n");
-            pspDebugScreenPrintf("at 'https://github.com/Arancia-3-Open-Services/ARK-4-A3/issues'.\n");
-            pspDebugScreenPrintf("There is no reason to panic, though.\n");
+        if (res<0) {
+            PRTSTR1("ERROR starting user module: %p", res);
             sceKernelDelayThread(10000000);
-        }
+        } 
         else {
             PRTSTR("Ok");
-        }
-    }
-    else {
-        PRTSTR1("ERROR loading user module: %p\n", uid);
-            pspDebugScreenPrintf("A problem has occurred, and ARK-4 A3 has stopped to prevent further instability to your PSP.\n");
-            pspDebugScreenPrintf("If this is the first time you are seeing this screen, try to wait for some seconds\n");
-            pspDebugScreenPrintf("or just restart your PSP.\n");
-            pspDebugScreenPrintf("If this problem continues, you should immediately contact customer service\n");
-            pspDebugScreenPrintf("at 'https://github.com/Arancia-3-Open-Services/ARK-4-A3/issues'.\n");
-            pspDebugScreenPrintf("There is no reason to panic, though.\n");
+        };
+    } else {
+        PRTSTR1("ERROR loading user module: %p", uid);
         sceKernelDelayThread(10000000);
-    }
-}
+    };
+};
 
 int (*prev_start)(int modid, SceSize argsize, void * argp, int * modstatus, SceKernelSMOption * opt) = NULL;
 int StartModuleHandler(int modid, SceSize argsize, void * argp, int * modstatus, SceKernelSMOption * opt){
@@ -59,12 +46,12 @@ int StartModuleHandler(int modid, SceSize argsize, void * argp, int * modstatus,
     if (!loaded){
         loadstart_usermod();
         loaded = 1;
-    }
+    };
 
     // forward to previous or default StartModule
     if (prev_start) return prev_start(modid, argsize, argp, modstatus, opt);
     return -1;
-}
+};
 
 int module_start(){
 
@@ -74,4 +61,4 @@ int module_start(){
     prev_start = sctrlSetStartModuleExtra(StartModuleHandler);
 
     return 0;
-}
+};

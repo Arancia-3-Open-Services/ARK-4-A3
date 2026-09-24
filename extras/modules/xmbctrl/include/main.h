@@ -58,6 +58,7 @@ typedef struct
     int umdregion;
     int vshregion;
     int qaflags;
+    int exh;
 } CFWConfig;
 
 typedef struct

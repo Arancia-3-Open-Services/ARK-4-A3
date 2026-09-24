@@ -58,7 +58,7 @@
  {
     initScreen(DisplaySetFrameBuf);
     colorDebug(0xFF0000); // Blue Screen of Death
-    PRTSTR("Exception caught!");
+    PRTSTR("Exception caught!!");
     PRTSTR1("Exception - %s", codeTxt[(regs->cause >> 2) & 31]);
     PRTSTR1("EPC       - %p", regs->epc);
     PRTSTR1("Cause     - %p", regs->cause);
