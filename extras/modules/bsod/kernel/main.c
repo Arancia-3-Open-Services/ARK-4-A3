@@ -32,6 +32,7 @@ void loadstart_usermod(){
             pspDebugScreenPrintf("or just restart your PSP.\n");
             pspDebugScreenPrintf("If this problem continues, you should immediately contact customer service\n");
             pspDebugScreenPrintf("at 'https://github.com/Arancia-3-Open-Services/ARK-4-A3/issues'.\n");
+            pspDebugScreenPrintf("There is no reason to panic, though.\n");
             sceKernelDelayThread(10000000);
         }
         else {
@@ -45,6 +46,7 @@ void loadstart_usermod(){
             pspDebugScreenPrintf("or just restart your PSP.\n");
             pspDebugScreenPrintf("If this problem continues, you should immediately contact customer service\n");
             pspDebugScreenPrintf("at 'https://github.com/Arancia-3-Open-Services/ARK-4-A3/issues'.\n");
+            pspDebugScreenPrintf("There is no reason to panic, though.\n");
         sceKernelDelayThread(10000000);
     }
 }
