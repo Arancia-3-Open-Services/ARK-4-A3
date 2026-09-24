@@ -28,6 +28,10 @@ void loadstart_usermod(){
         if (res<0){
             PRTSTR1("ERROR starting user module: %p\n", res);
             pspDebugScreenPrintf("A problem has occurred, and ARK-4 A3 has stopped to prevent further instability to your PSP.\n");
+            pspDebugScreenPrintf("If this is the first time you are seeing this screen, try to wait for some seconds\n");
+            pspDebugScreenPrintf("or just restart your PSP.\n");
+            pspDebugScreenPrintf("If this problem continues, you should immediately contact customer service\n");
+            pspDebugScreenPrintf("at 'https://github.com/Arancia-3-Open-Services/ARK-4-A3/issues'.\n");
             sceKernelDelayThread(10000000);
         }
         else {
@@ -36,7 +40,11 @@ void loadstart_usermod(){
     }
     else {
         PRTSTR1("ERROR loading user module: %p\n", uid);
-        pspDebugScreenPrintf("A problem has occurred, and ARK-4 A3 has stopped to prevent further instability to your PSP.\n");
+            pspDebugScreenPrintf("A problem has occurred, and ARK-4 A3 has stopped to prevent further instability to your PSP.\n");
+            pspDebugScreenPrintf("If this is the first time you are seeing this screen, try to wait for some seconds\n");
+            pspDebugScreenPrintf("or just restart your PSP.\n");
+            pspDebugScreenPrintf("If this problem continues, you should immediately contact customer service\n");
+            pspDebugScreenPrintf("at 'https://github.com/Arancia-3-Open-Services/ARK-4-A3/issues'.\n");
         sceKernelDelayThread(10000000);
     }
 }
