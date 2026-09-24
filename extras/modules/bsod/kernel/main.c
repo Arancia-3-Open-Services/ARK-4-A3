@@ -35,7 +35,7 @@ void loadstart_usermod(){
         }
     }
     else {
-        PRTSTR1("ERROR loading user module: %p", uid);
+        PRTSTR1("ERROR loading user module: %p\n", uid);
         pspDebugScreenPrintf("A problem has occurred, and ARK-4 A3 has stopped to prevent further instability to your PSP.\n");
         sceKernelDelayThread(10000000);
     }
