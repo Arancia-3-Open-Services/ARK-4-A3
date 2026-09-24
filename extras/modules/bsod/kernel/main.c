@@ -19,7 +19,7 @@ int (* DisplaySetFrameBuf)(void*, int, int, int) = NULL;
 void loadstart_usermod(){
 
     initScreen(DisplaySetFrameBuf);
-    PRTSTR("Starting BSoD");
+    PRTSTR("Starting BSOD.");
 
     int uid = sceKernelLoadModuleBuffer(size_bsod_user, bsod_user, 0, NULL);
 
@@ -27,6 +27,7 @@ void loadstart_usermod(){
         int res = sceKernelStartModule(uid, 0, NULL, NULL, NULL);
         if (res<0){
             PRTSTR1("ERROR starting user module: %p", res);
+            pspDebugScreenPrintf("A problem has occurred, and ARK-4 A3 has stopped to prevent further instability to your PSP.\n");
             sceKernelDelayThread(10000000);
         }
         else {
@@ -35,6 +36,7 @@ void loadstart_usermod(){
     }
     else {
         PRTSTR1("ERROR loading user module: %p", uid);
+        pspDebugScreenPrintf("A problem has occurred, and ARK-4 A3 has stopped to prevent further instability to your PSP.\n");
         sceKernelDelayThread(10000000);
     }
 }
