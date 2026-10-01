@@ -114,6 +114,7 @@ void reset_ark_settings(vsh_Menu *vsh){
         "always, noumd, off\n"
         "always, noanalog, off\n"
         "always, qaflags, on\n"
+        "always, exh, off\n"
         "\n"
         "# The following games don't like Inferno Cache\n"
         "# Luxor - The Wrath of Set (the other Luxor game works fine)\n"
@@ -159,11 +160,14 @@ void import_classic_plugins(vsh_Menu *vsh, int devpath) {
     int vshCharLength = scePaf_strlen(vshChar);
     char *popsChar = "pops, ";
     int popsCharLength = scePaf_strlen(popsChar);
+    char *exhChar = "exh, ";
+    int exhCharLength = scePaf_strlen(exhChar);
     
     char* filename = (devpath)? "ef0:/SEPLUGINS/PLUGINS.TXT" : "ms0:/SEPLUGINS/PLUGINS.TXT";
     char* gamepath = (devpath)? "ef0:/SEPLUGINS/GAME.TXT" : "ms0:/SEPLUGINS/GAME.TXT";
     char* vshpath = (devpath)? "ef0:/SEPLUGINS/VSH.TXT" : "ms0:/SEPLUGINS/VSH.TXT";
     char* popspath = (devpath)? "ef0:/SEPLUGINS/POPS.TXT" : "ms0:/SEPLUGINS/POPS.TXT";
+    char* exhpath = (devpath)? "ef0:/SEPLUGINS/EXH.TXT" : "ms0:/SEPLUGINS/EXH.TXT";
 
     game = sceIoOpen(gamepath, PSP_O_RDONLY, 0777);
     vsh_id = sceIoOpen(vshpath, PSP_O_RDONLY, 0777);

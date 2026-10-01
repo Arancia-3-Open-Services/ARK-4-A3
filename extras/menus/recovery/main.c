@@ -277,6 +277,12 @@ int main(SceSize args, void *argp) {
     if (fd < 0) fd = sceIoOpen("ef0:/PSP/SAVEDATA/ARK_30000/exh.txt", PSP_O_RDONLY, 0777);
     if (fd >= 0) { sceIoRead(fd, &exh_buf, 1); sceIoClose(fd); };
     int size = sizeof(options) / sizeof(options[0]);
+    if (exh_buf == '0') {
+        options[7] = "exh is disabled.";
+    } else if (exh_buf == '1') {
+        options[7] = "exh is enabled.";
+    };
+    
     int dir = 0;
 
     draw(options, size, dir);
