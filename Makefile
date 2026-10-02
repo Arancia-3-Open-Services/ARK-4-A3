@@ -40,6 +40,7 @@ SUBDIRS = libs \
 	extras/modules/libpng \
 	extras/modules/intraFont \
 	extras/modules/unarchive \
+	extras/modules/flash4 \
 	loader/live/user/linkless_payload \
 	loader/live/user/signed_eboot \
 	loader/live/user/psxloader \
@@ -115,6 +116,7 @@ copy-bin:
 	$(Q)cp extras/modules/usbdevice/usbdevice.prx dist/ARK_30000/USBDEV.PRX # USB Device Driver
 	$(Q)cp extras/modules/peops/peops.prx dist/ARK_30000/PS1SPU.PRX
 	$(Q)cp extras/modules/bsod/kernel/bsod.prx dist/ARK_30000/BSOD.PRX # Blue Screen of Death debugger
+	$(Q)cp extras/modules/flash4/flash_4.prx dist/A3/flash_4.prx
 	$(Q)cp extras/modules/pspftp/pspftp.prx dist/ARK_30000/PSPFTP.PRX
 	$(Q)cp extras/modules/pspav/pspav.prx dist/ARK_30000/PSPAV.PRX
 	$(Q)cp extras/modules/libpng/libpng.prx dist/ARK_30000/LIBPNG.PRX
@@ -344,6 +346,7 @@ clean:
 	$(Q)$(MAKE) $@ -C extras/modules/libpng
 	$(Q)$(MAKE) $@ -C extras/modules/intraFont
 	$(Q)$(MAKE) $@ -C extras/modules/unarchive
+	$(Q)$(MAKE) $@ -C extras/modules/flash4
 	$(Q)$(MAKE) $@ -C extras/apps/updater/
 	$(Q)$(MAKE) $@ -C extras/apps/installer/
 	$(Q)$(MAKE) $@ -C extras/apps/uninstaller
@@ -428,6 +431,7 @@ mkdir-dist:
 	$(Q)mkdir dist | true
 	$(Q)mkdir dist/PC | true
 	$(Q)mkdir dist/PSP | true
+	$(Q)mkdir dist/A3 | true
 	$(Q)mkdir dist/PSVita | true
 	$(Q)mkdir dist/UPDATE | true
 	$(Q)mkdir dist/ARK_Loader | true
