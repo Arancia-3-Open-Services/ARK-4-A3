@@ -188,4 +188,6 @@ Just know that official development from the ark 4 team has shifted to ark 5 ent
 
 - The Screenshots were made with PRXShot.
 
+- If you see a LTE on the System information, that means "Live Temporary Enroll".
+There's no reason to panic. I have just updated the live thing to say "LTE".
 </p>

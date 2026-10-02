@@ -101,8 +101,8 @@ extern "C" {
 #define ARK_BIN "ARK.BIN" // ARK-2 payload
 #define ARK4_BIN "ARK4.BIN" // ARK-4 A3 payload
 #define ARKX_BIN "ARKX.BIN" // ARK-X payload
-#define LIVE_EXPLOIT_ID "exh A3" // default loader name
-#define CIPL_EXPLOIT_ID "cIPL A3" // loader name for Custom IPL. Remember, cIPL is not a custom firmware itself, it's an exploit for making the CFW permanent.
+#define LIVE_EXPLOIT_ID "LTE" // default loader name
+#define CIPL_EXPLOIT_ID "cIPL" // loader name for Custom IPL. Remember, cIPL is not a custom firmware itself, it's an exploit for making the CFW permanent.
 #define DC_EXPLOIT_ID "DC" // loader name for Despertar del Cementerio
 #define DEFAULT_ARK_FOLDER "ARK_30000"
 #define SAVEDATA_MS0 "ms0:/PSP/SAVEDATA/" //the directory where "ARK_30000" is located.
@@ -148,11 +148,11 @@ typedef enum{
 // It should not be possible to change these (except for recovery flag).
 typedef struct ARKConfig{
     u32 magic;
-    char arkpath[ARK_PATH_SIZE-20]; // ARK installation folder, leave enough room to concatenate files
-    char exploit_id[12]; // ID of the game exploit, or name of the bootloader
-    char launcher[20]; // run ARK in launcher mode if launcher specified
-    unsigned char exec_mode; // ARK execution mode (PSP, PS Vita, Vita POPS, etc)
-    unsigned char recovery; // run ARK in recovery mode (disables settings, plugins and autoboots RECOVERY.PBP)
+    char arkpath[ARK_PATH_SIZE-20]; //  ARK installation folder, leave enough room to concatenate files
+    char exploit_id[12]; //             ID of the game exploit, or name of the bootloader
+    char launcher[20]; //               run ARK in launcher mode if launcher specified
+    unsigned char exec_mode; //         ARK execution mode (PSP, PS Vita, Vita POPS, etc)
+    unsigned char recovery; //          run ARK in recovery mode (disables settings, plugins and autoboots RECOVERY.PBP)
 } ARKConfig;
 
 // macros for device checking

@@ -89,7 +89,7 @@ int exploitEntry(ARKConfig* arg0, UserFunctions* arg1, char* kxploit_file){
                 g_tbl->KernelDcacheWritebackAll();
                 // Trigger Kernel Permission Callback
                 kxf->executeKernel(KERNELIFY(&kernelContentFunction));
-                err = "Could not execute kernel function";
+                err = "Could not execute kernel function.";
                 res = -1;
             }
             else{
