@@ -1,7 +1,7 @@
 TARGET = flash_4
 OBJS = main.o
 
-CFLAGS = -0s -G0 -Wall
+CFLAGS = -Os -G0 -Wall
 CXXFLAGS = $(CFLAGS) -fno-exceptions -fno-rtti
 ASFLAGS = $(CFLAGS)
 
