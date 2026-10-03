@@ -809,14 +809,14 @@ int OnInstallComplete(void *param)
 
     if (fw == FW_OFW && kuKernelGetModel() == 1)
     {
-        SetStatus("Install is complete.\n"
+        SetStatus("Installing is now complete.\n"
         	      "A shutdown is required. A normal battery is\n"
         		  "required to boot this firmware on this PSP.");
          AddShutdownRebootBD(1);
     }
     else
     {
-        SetStatus("Install is complete.\nA shutdown or a reboot is required.");
+        SetStatus("Installing is now complete.\nA shutdown or a reboot is required.");
         AddShutdownRebootBD(0);
     }
 

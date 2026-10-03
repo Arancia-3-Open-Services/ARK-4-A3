@@ -1,7 +1,8 @@
+ARKROOT = ../../..
 TARGET = flash_4
 OBJS = main.o
-
-CFLAGS = -Os -G0 -Wall
+INCDIR = $(ARKROOT)/common/include
+CFLAGS := -Os -G0 -Wall -std=gnu99
 CXXFLAGS = $(CFLAGS) -fno-exceptions -fno-rtti
 ASFLAGS = $(CFLAGS)
 
