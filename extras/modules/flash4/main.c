@@ -1,3 +1,4 @@
+#include <pspsdk.h>
 #include <pspkernel.h>
 #include <pspdebug.h>
 #include <pspctrl.h>
@@ -69,15 +70,16 @@ int module_start(int argc, char *argv[]) {
               sceIoWrite(fd, writepostoffice, strlen(writepostoffice)); sceIoClose(fd);};
               fd = sceIoOpen("ms0:/flash4/cel/celpostoffice.txt", PSP_O_WRONLY | PSP_O_CREAT | PSP_O_TRUNC, 0777);
               if (fd >= 0) {const char *writecelpostoffice2 =
-              "==================================================================\n"
-              " CELPostoffice | : |                                    | In place\n"
-              " A3            | : | argument:CEL flash4:/celname.txt   | In place\n"
-              " A3            | : | argument:NAME flash4:/unitname.txt | In place\n"
-              " A3            | : | argument:NULL flash4:/cel          | In place\n"
-              "==================================================================\n"
-              " CELPostOffice | : | argument:GENERALCEL                | In place\n"
-              " CELPostOffice | : | argument:GENERALCEL flash4:/A3     | In place\n"
-              "==================================================================";
+              "===================================================================\n"
+              " CELPostoffice | : |                                     | In place\n"
+              " A3            | : | argument:CEL: flash4:/celname.txt   | In place\n"
+              " A3            | : | argument:NAME: flash4:/unitname.txt | In place\n"
+              " A3            | : | argument:NULL: flash4:/cel          | In place\n"
+              "===================================================================\n"
+              " CELPostOffice | : | argument:GENERALCEL:                | In place\n"
+              " CELPostOffice | : | argument:GENERALCEL: flash4:/A3     | In place\n"
+              " CELPostOffice | : | argument:GENERALCELBOOTI: cIPL      | In place\n"
+              "===================================================================";
               sceIoWrite(fd, writecelpostoffice2, strlen(writecelpostoffice2)); sceIoClose(fd);};
               
               pspDebugScreenPrintf("Done.\n");
