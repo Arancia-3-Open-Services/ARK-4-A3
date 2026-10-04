@@ -7,7 +7,9 @@
 #include <string.h>
 #include <stdio.h>
 
+// Module Info. I think this is passive for those prx files.
 PSP_MODULE_INFO("flash4", 0, 1, 0);
+
 int module_start(int argc, char *argv[]) {
               pspDebugScreenInit();
               char *directs[] = {
@@ -71,6 +73,10 @@ int module_start(int argc, char *argv[]) {
               " CELPostoffice | : |                                    | In place\n"
               " A3            | : | argument:CEL flash4:/celname.txt   | In place\n"
               " A3            | : | argument:NAME flash4:/unitname.txt | In place\n"
+              " A3            | : | argument:NULL flash4:/cel          | In place\n"
+              "==================================================================\n"
+              " CELPostOffice | : | argument:GENERALCEL                | In place\n"
+              " CELPostOffice | : | argument:GENERALCEL flash4:/A3     | In place\n"
               "==================================================================";
               sceIoWrite(fd, writecelpostoffice2, strlen(writecelpostoffice2)); sceIoClose(fd);};
               
