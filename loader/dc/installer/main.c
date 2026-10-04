@@ -1026,7 +1026,7 @@ int install_iplloader()
 	ErrorExit(1000, "The install failed.\n"
         	        "Contact the Sony Computer Entertainment technical support line for assistance.\n"
         				"(ffffffff)\n\n"
-        	            "Just kidding. Please use PSP Tool to format your memory stick.\n"
+        	            "JUST KIDDING!!! Please use PSP Tool to format your memory stick!\n"
 			    "https://github.com/krazynez/psptool\n");
     }
 
@@ -1377,7 +1377,8 @@ int app_main()
     if (sceKernelDevkitVersion() < 0x02070110)
     {
         ErrorExit(1000, "This program requires 2.71 or higher.\n",
-        	             "If you are in a cfw, please reexecute psardumper on the higher kernel.\n");
+        	            "If you are in a cfw, please re-execute\n",
+                        "PSARDUMPER on the higher kernel.\n");
     }
 
     SceUID mod = LoadStartModule("libpsardumper.prx", PSP_MEMORY_PARTITION_KERNEL);
@@ -1396,8 +1397,9 @@ int app_main()
     {    
         if (theme != 0)
         {
-        	ErrorExit(1000, "Your psp has a custom theme set.\n"
-        					"Turn the theme off before running this program.\n");
+        	ErrorExit(1000, "Your PSP System has a custom theme set.\n",
+        					"Switch back to a normal theme\n",
+                            "before running this program.\n");
         }
     }
 
@@ -1430,7 +1432,7 @@ int app_main()
     int tp = vlfGuiAddPictureResource("update_plugin", "tex_update_icon", 0, 0);
     //int tp = vlfGuiAddPictureFile("m33.tga", 0, 0);
     vlfGuiChangeCharacterByButton('*', VLF_ENTER);
-    begin_install_text = vlfGuiAddText(110, 118, "Press * to begin the installation");
+    begin_install_text = vlfGuiAddText(110, 118, "Press * to begin the installation.");
 
     vlfGuiSetTitleBar(tt, tp, 1, 0);
     vlfGuiBottomDialog(VLF_DI_CANCEL, -1, 1, 0, VLF_DEFAULT, OnCancelInstall);
