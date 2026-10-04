@@ -19,16 +19,16 @@ int module_start(int argc, char *argv[]) {
                             "ms0:/flash4/cel"
               };
               pspDebugScreenPrintf("Unassigning flash4...\n");
-              
+
               sceIoUnassign("flash4:");
               sceKernelDelayThread(1000000);
-              
+
               pspDebugScreenPrintf("Logical Flash Rendering (flash4)...\n");
-              
+
               sceIoAssign("flash4:", "lflash0:0,4", "flashfat4:", IOASSIGN_RDWR, NULL, 0);
               int fd;
               pspDebugScreenPrintf("Flashing files...\n");
-              
+
               fd = sceIoOpen("flash4:/onstack.A3", PSP_O_WRONLY | PSP_O_CREAT | PSP_O_TRUNC, 0777);
               if (fd >= 0) {const char *initdata = "Ready"; sceIoWrite(fd, initdata, strlen(initdata)); sceIoClose(fd);};
               fd = sceIoOpen("flash4:/A3/it_postoffice.txt", PSP_O_WRONLY | PSP_O_CREAT | PSP_O_TRUNC, 0777);
@@ -41,9 +41,9 @@ int module_start(int argc, char *argv[]) {
               " A3            | : | argument:NAME flash4:/unitname.txt | In place\n"
               "==================================================================";
               sceIoWrite(fd, writecelpostoffice, strlen(writecelpostoffice)); sceIoClose(fd);};
-              
+
               pspDebugScreenPrintf("Writing cons to ms0...\n");
-              
+
               fd = sceIoOpen("ms0:/flash4.txt", PSP_O_WRONLY | PSP_O_CREAT | PSP_O_TRUNC, 0777);
               if (fd >= 0) {const char *writeflashfile = 
               "==========================================================\n"
@@ -53,9 +53,9 @@ int module_start(int argc, char *argv[]) {
               "A3 | : | <DIR> flash4:/A3/celpostoffice.txt     | In place\n"
               "==========================================================";
               sceIoWrite(fd, writeflashfile, strlen(writeflashfile)); sceIoClose(fd);};
-              
+
               pspDebugScreenPrintf("Creating Directories on ms0:/flash4...\n");
-              
+
               // Creates directories on the memory stick.
               sceIoRemove("ms0:/flash4/");
               sceKernelDelayThread(5000);
@@ -81,9 +81,9 @@ int module_start(int argc, char *argv[]) {
               " CELPostOffice | : | argument:GENERALCELBOOTI: cIPL      | In place\n"
               "===================================================================";
               sceIoWrite(fd, writecelpostoffice2, strlen(writecelpostoffice2)); sceIoClose(fd);};
-              
+
               pspDebugScreenPrintf("Done.\n");
               pspDebugScreenPrintf("Starting process.\n");
-              
+
               return 0;
 };
