@@ -1,3 +1,0 @@
-version: A3.0.3
-url: http://catbox.moe
-changelog: - I now use catbox.moe! 

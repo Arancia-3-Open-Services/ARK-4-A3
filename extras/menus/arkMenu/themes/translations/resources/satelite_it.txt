@@ -5,32 +5,32 @@ Normale
 Modifica
 X -> O
 O -> X
-DISPOSITIVO USB
-PROTEGGI USB
-COLORE CARATTERI
-COLORE SFONDO
-FONT
-STILE MENU
-MENU PRINCIPALE
-MOD BATTERIA
-MODIFICA X/O
-IMPORTA PLUGINS CLASSICI
-ATTIVA FLASH E WMA
-ELIMINA IBERNAZIONE
-RESETTA IMPOSTAZIONI ARK
-INDIETRO
-IBERNAZIONE NON SUPPORTATA
+Dispositivo USB
+Proteggi l'USB
+Colore dei caratteri
+Colore dello sfondo
+Font
+Stile del menu
+Menu Principale
+Mod batteria
+Modifica X/O
+Importa i Plugins classici
+Attiva i codec Flash e WMA
+Elimina ibernazione
+Resetta impostazioni di ARK
+Indietro
+Ibernazione non supportata
 Normale -> Pandora
 Pandora -> Normale
-MENU VSH
-MENU VSH AVANZATO
-RECOVERY MENU ->
-SPEGNI CONSOLE
-SOSPENDI
-RIAVVIA CONSOLE
-RIAVVIA VSH
-ESCI
-Non Supportato
+Menu VSH
+Menu VSH Avanzato
+Menu di servizio ->
+Spegni la PSP
+Sospendi
+Riavvia la PSP
+Riavvia il VSH
+Esci
+Non supportato
 USB di Adrenaline
 Flash
 UMD

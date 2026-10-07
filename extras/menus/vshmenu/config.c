@@ -119,6 +119,7 @@ void reset_ark_settings(vsh_Menu *vsh){
         "# The following games don't like Inferno Cache\n"
         "# Luxor - The Wrath of Set (the other Luxor game works fine)\n"
         "ULUS10201, infernocache, off\n"
+        "ULES01063, infernocache, off\n"
         "# Flat-Out Head On (both US and EU)\n"
         "ULUS10328 ULES00968, infernocache, off\n"
         "\n"

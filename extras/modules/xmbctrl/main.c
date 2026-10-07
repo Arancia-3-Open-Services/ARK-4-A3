@@ -827,7 +827,7 @@ wchar_t *scePafGetTextPatched(void *a0, char *name)
                 else if(sce_paf_private_strcmp(name, "xmbmsgtop_sysconf_plugins") == 0)
                     translated = "Plugins Manager";
                 else if(sce_paf_private_strcmp(name, "xmbmsgtop_custom_launcher") == 0)
-                    translated = "Custom Launcher";
+                    translated = "ARKMenu";
                 else if(sce_paf_private_strcmp(name, "xmbmsgtop_custom_app") == 0)
                     translated = "Custom App";
                 else if(sce_paf_private_strcmp(name, "xmbmsgtop_150_reboot") == 0)

@@ -7,6 +7,7 @@ ARKROOT ?= $(CURDIR)
 export DEBUG ARKROOT
 
 SUBDIRS = libs \
+	extras/modules/flash4 \
 	contrib/PC/prxencrypter \
 	core/systemctrl \
 	core/inferno \
@@ -40,7 +41,6 @@ SUBDIRS = libs \
 	extras/modules/libpng \
 	extras/modules/intraFont \
 	extras/modules/unarchive \
-	extras/modules/flash4 \
 	loader/live/user/linkless_payload \
 	loader/live/user/signed_eboot \
 	loader/live/user/psxloader \
