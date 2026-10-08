@@ -1081,7 +1081,7 @@ int install_thread(SceSize args, void *argp)
     sceKernelDelayThread(1200000);
     SetProgress(2, 1);
 
-    SetStatus("Assigning flashes...");
+    SetStatus("Logical Flash Rendering...");
 
     res = sceIoAssign("flach0:", "lflach0:0,0", "flachfat0:", IOASSIGN_RDWR, NULL, 0);
     if (res < 0)

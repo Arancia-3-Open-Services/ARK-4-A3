@@ -286,10 +286,10 @@ void MainMenu(int sel)
     char *items[] =
     {
         "Install 6.61 ARK",
-        "Install 6.61",
+        "Install 6.61 OFW",
         "NAND operations",
         "Hardware Info",
-        "Boot 6.61 ARK from the Memory Stick",
+        "Test ARK",
         "Shutdown",
         "Reboot PSP"
     };

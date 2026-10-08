@@ -242,7 +242,7 @@ void DumpNand()
     cancel_dump = 0;
 
     ClearProgress();
-    status = vlfGuiAddText(80, 100, "Dumping nand...");
+    status = vlfGuiAddText(80, 100, "Dumping NAND...");
 
     progress_bar = vlfGuiAddProgressBar(136);    
     progress_text = vlfGuiAddText(240, 148, "0%");
@@ -430,7 +430,7 @@ int RestoreNand()
     u32 dummy, nandsize;
     u64 dummy64;
 
-    if (vlfGuiMessageDialog("Physical nand restore can be dangerous if your nand has more bad blocks than when you did the dump.\nAre you sure you want to continue?", VLF_MD_TYPE_NORMAL | VLF_MD_BUTTONS_YESNO | VLF_MD_INITIAL_CURSOR_NO) != VLF_MD_YES)
+    if (vlfGuiMessageDialog("Physical NAND restore can be EXTREMELY DANGEROUS if your nand has more bad blocks than when you did the dump.\nYou could risk bricking the console or cause several\ndamage to the NAND. Please be careful before doing this.\nAre you sure you want to continue?", VLF_MD_TYPE_NORMAL | VLF_MD_BUTTONS_YESNO | VLF_MD_INITIAL_CURSOR_NO) != VLF_MD_YES)
     {
         return VLF_EV_RET_NOTHING;
     }
@@ -452,7 +452,7 @@ int RestoreNand()
     }
 
     ClearProgress();
-    status = vlfGuiAddText(80, 100, "Restoring nand...");
+    status = vlfGuiAddText(80, 100, "Restoring NAND...");
 
     progress_bar = vlfGuiAddProgressBar(136);    
     progress_text = vlfGuiAddText(240, 148, "0%");
@@ -491,6 +491,14 @@ int OnNandOperationsSelect(int sel)
         	IdStorageMenu(0);
         	return VLF_EV_RET_NOTHING;
         break;
+
+        case 4:
+            vlfGuiCancelBottomDialog();
+        	vlfGuiCancelCentralMenu();
+        	flash4menu();
+        	return VLF_EV_RET_NOTHING;
+        break;
+
     }    
     
     return VLF_EV_RET_REMOVE_OBJECTS | VLF_EV_RET_REMOVE_HANDLERS;
@@ -516,9 +524,10 @@ void NandOperationsMenu(int sel)
         "Restore NAND",
         "Format Lflash",
         "IDStorage tools",
+        "flash4 Management"
     };
 
-    vlfGuiCentralMenu(kuKernelGetModel() > 2 ? 3 : 4, items, sel, OnNandOperationsSelect, 0, -8);
+    vlfGuiCentralMenu(kuKernelGetModel() > 2 ? 3 : 5, items, sel, OnNandOperationsSelect, 0, -8);
     //vlfGuiCentralMenu(4, items, sel, OnNandOperationsSelect, 0, -8);
     vlfGuiBottomDialog(VLF_DI_BACK, VLF_DI_ENTER, 1, 0, VLF_DEFAULT, OnBackToMainMenuFromNO);
 }
