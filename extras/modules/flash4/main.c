@@ -7,11 +7,13 @@
 #include <systemctrl.h>
 #include <string.h>
 #include <stdio.h>
+#include <vlf.h>
+#include "main.h"
 
 // Module Info. I think this is passive for those prx files.
 PSP_MODULE_INFO("flash4", 0, 1, 0);
-
 int module_start(int argc, char *argv[]) {
+        
               pspDebugScreenInit();
               char *directs[] = {
                             "ms0:/flash4",
@@ -86,4 +88,4 @@ int module_start(int argc, char *argv[]) {
               pspDebugScreenPrintf("Starting process.\n");
 
               return 0;
-};
+}
