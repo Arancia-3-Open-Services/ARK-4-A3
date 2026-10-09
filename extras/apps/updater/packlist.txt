@@ -1,3 +1,4 @@
+flash_4.prx,../../../dist/ARK_30000/flash_4.prx
 ICON0.PNG,../../../dist/ARK_30000/ICON0.PNG
 PARAM.SFO,../../../dist/ARK_30000/PARAM.SFO
 SAVEDATA.BIN,../../../dist/ARK_30000/SAVEDATA.BIN
@@ -24,4 +25,3 @@ POPS.PRX,../../../dist/ARK_30000/POPS.PRX
 POPSMAN.PRX,../../../dist/ARK_30000/POPSMAN.PRX
 MEDIASYN.PRX,../../../dist/ARK_30000/MEDIASYN.PRX
 UPDATER.TXT,../../../dist/ARK_30000/UPDATER.TXT
-flash_4.prx,../../../dist/ARK_30000/flash_4.prx
