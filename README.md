@@ -190,4 +190,7 @@ Just know that official development from the ark 4 team has shifted to ark 5 ent
 
 - If you see a LTE on the System information, that means "Live Temporary Enroll".
 There's no reason to panic. I have just updated the live thing to say "LTE".
+
+- ARK-4 A3 is tested on a 02g model. even if so, behaviour may vary depending on your model.
+Consider testing ARK-4 A3 in LTE (temporary mode) before applying permanent patches like cIPL in order to report behaviour if ARK-4 A3 has problems on your model.
 </p>
