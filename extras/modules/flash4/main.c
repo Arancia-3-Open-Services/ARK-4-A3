@@ -12,13 +12,19 @@
 // Module Info. I think this is passive for those prx files.
 PSP_MODULE_INFO("flash4", 0, 1, 0);
 int module_start(int argc, char *argv[]) {
-        
-              pspDebugScreenInit();
+              SceCtrlData pad;
+              sceCtrlPeekBufferPositive(&pad, 1);
+              if (pad.Buttons & PSP_CTRL_UP)
+              {
+                flash4menustack();
+              };
+              int fd;
               char *directs[] = {
                             "ms0:/flash4",
                             "ms0:/flash4/A3",
                             "ms0:/flash4/cel"
               };
+              pspDebugScreenInit();
               pspDebugScreenPrintf("Unassigning flash4...\n");
 
               sceIoUnassign("flash4:");
@@ -26,10 +32,28 @@ int module_start(int argc, char *argv[]) {
 
               pspDebugScreenPrintf("Logical Flash Rendering (flash4)...\n");
 
-              sceIoAssign("flash4:", "lflash0:0,4", "flashfat4:", IOASSIGN_RDWR, NULL, 0);
-              int fd;
+              sceIoAssign("flash4:", "lflash0:0,4", "flashfat4:", IOASSIGN_RDWR, 0, 0);
+              pspDebugScreenPrintf("Formatting flash4:/ to match structures..\n");
+              int res = sceIoDevctl("flash4:", 0x3001, 0, 0, 0, 0);
+              if (res < 0)
+              {
+                pspDebugScreenPrintf("Run failed: %08X\n", res);
+              } else  {
+                pspDebugScreenPrintf("Run OK.\n");
+              };
               pspDebugScreenPrintf("Flashing files...\n");
-
+              // Separator.
+              fd = sceIoOpen("flash4:/presencefile.A3", PSP_O_WRONLY | PSP_O_CREAT | PSP_O_TRUNC, 0777);
+              if (fd >= 0)
+              {
+                const char *writepresfile = "This file will be read by flash4 plugin.";
+                sceIoWrite(fd, writepresfile, strlen(writepresfile));
+                sceIoClose(fd);
+                pspDebugScreenPrintf("Run OK.\n");
+              } else {
+                pspDebugScreenPrintf("Run failed: %08X\n", fd);
+              };
+              // Separator.
               fd = sceIoOpen("flash4:/onstack.A3", PSP_O_WRONLY | PSP_O_CREAT | PSP_O_TRUNC, 0777);
               if (fd >= 0) {const char *initdata = "Ready"; sceIoWrite(fd, initdata, strlen(initdata)); sceIoClose(fd);};
               fd = sceIoOpen("flash4:/A3/it_postoffice.txt", PSP_O_WRONLY | PSP_O_CREAT | PSP_O_TRUNC, 0777);
@@ -52,13 +76,14 @@ int module_start(int argc, char *argv[]) {
               "A3 | : | <DIR> flash4:/A3/it_postoffice.txt     | In place\n"
               "A3 | : | <DIR> ms0:/flash4.txt                  | In place\n"
               "A3 | : | <DIR> flash4:/A3/celpostoffice.txt     | In place\n"
+              "A3 | : | <DIR> flash4:/presencefile.A3          | In place\n"
               "==========================================================";
               sceIoWrite(fd, writeflashfile, strlen(writeflashfile)); sceIoClose(fd);};
 
               pspDebugScreenPrintf("Creating Directories on ms0:/flash4...\n");
 
               // Creates directories on the memory stick.
-              sceIoRemove("ms0:/flash4/");
+              sceIoRmdir("ms0:/flash4/");
               sceKernelDelayThread(5000);
               for (int i = 0; i < 3; i++) {sceIoMkdir(directs[i], 0777);};
               fd = sceIoOpen("flash4:/unitname.txt", PSP_O_WRONLY | PSP_O_CREAT | PSP_O_TRUNC, 0777);
@@ -83,8 +108,25 @@ int module_start(int argc, char *argv[]) {
               "===================================================================";
               sceIoWrite(fd, writecelpostoffice2, strlen(writecelpostoffice2)); sceIoClose(fd);};
 
-              pspDebugScreenPrintf("Done.\n");
-              pspDebugScreenPrintf("Starting process.\n");
+              pspDebugScreenPrintf("Verifying presence of ms0:/flash4...\n");
+              
+              int file = sceIoOpen("ms0:/flash4.txt", PSP_O_RDONLY, 0);
+              if (file < 0)
+              {
 
-              return 0;
-}
+                pspDebugScreenPrintf("FILE NON-EXISTENT, Going to flash4 management.\n");
+
+                sceKernelDelayThread(1000000);
+                flash4menustack();
+
+              } else {
+                
+                pspDebugScreenPrintf("Done.\n");
+                pspDebugScreenPrintf("Starting process.\n");
+                sceIoClose(file);
+                
+                return 0;
+              };
+
+
+            } 

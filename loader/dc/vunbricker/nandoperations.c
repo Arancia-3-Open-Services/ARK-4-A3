@@ -495,7 +495,7 @@ int OnNandOperationsSelect(int sel)
         case 4:
             vlfGuiCancelBottomDialog();
         	vlfGuiCancelCentralMenu();
-        	flash4menu();
+        	flash4menu(0);
         	return VLF_EV_RET_NOTHING;
         break;
 

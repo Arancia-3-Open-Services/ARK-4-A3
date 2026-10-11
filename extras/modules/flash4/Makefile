@@ -1,6 +1,6 @@
 ARKROOT = ../../..
 TARGET = flash_4
-OBJS = main.o
+OBJS = main.o menu.o
 INCDIR = $(ARKROOT)/common/include
 CFLAGS := -Os -G0 -Wall -std=gnu99
 CXXFLAGS = $(CFLAGS) -fno-exceptions -fno-rtti
