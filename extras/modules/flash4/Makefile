@@ -5,7 +5,9 @@ INCDIR = $(ARKROOT)/common/include
 CFLAGS := -Os -G0 -Wall -std=gnu99
 CXXFLAGS = $(CFLAGS) -fno-exceptions -fno-rtti
 ASFLAGS = $(CFLAGS)
-
+LDFLAGS = -L../../../libs/KUBridge -L../../../libs/SystemCtrlForUser
+LIBDIR = ../../../../libs/KUBridge ../../../libs/SystemCtrlForUser
+LIBS = -lpspkubridge -lpspsystemctrl_user -lpspdebug -lpspdisplay -lpspgum -lpspctrl -lpspsdk
 BUILD_PRX = 1
 PRX_EXPORTS = exports.exp
 all: $(TARGET).prx
